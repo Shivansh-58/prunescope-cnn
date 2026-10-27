@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PruneScope CNN</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel input-panel">
+        <header>
+          <div>
+            <h1>PruneScope CNN</h1>
+            <p id="deviceLabel">Connecting...</p>
+          </div>
+          <span id="sampleLabel">Sample 0</span>
+        </header>
+        <canvas id="layoutCanvas" width="320" height="320"></canvas>
+        <div class="controls">
+          <button data-command="prev" title="Previous sample">Prev</button>
+          <button data-command="next" title="Next sample">Next</button>
+          <button data-command="random" title="Random sample">Random</button>
+        </div>
+        <div id="elementLegend" class="legend"></div>
+      </section>
+
+      <section class="panel cnn-panel">
+        <header>
+          <div>
+            <h2>CNN Visualization</h2>
+            <p id="animationStatus">Waiting for activation flow</p>
+          </div>
+          <div class="controls compact">
+            <button data-command="play" title="Play">Play</button>
+            <button data-command="pause" title="Pause">Pause</button>
+            <button data-command="step" title="Step">Step</button>
+            <button data-command="replay" title="Replay">Replay</button>
+          </div>
+        </header>
+        <div class="speed-row">
+          <label for="speedControl">Speed</label>
+          <input id="speedControl" type="range" min="0.2" max="4" value="1" step="0.1" />
+          <output id="speedValue">1.0x</output>
+        </div>
+        <canvas id="networkCanvas" width="1100" height="520"></canvas>
+        <div class="feature-grid">
+          <article>
+            <h3>Conv1</h3>
+            <canvas id="conv1Canvas" width="320" height="320"></canvas>
+          </article>
+          <article>
+            <h3>Conv2</h3>
+            <canvas id="conv2Canvas" width="320" height="320"></canvas>
+          </article>
+          <article>
+            <h3>Conv3</h3>
+            <canvas id="conv3Canvas" width="320" height="320"></canvas>
+          </article>
+          <article>
+            <h3>Conv4</h3>
+            <canvas id="conv4Canvas" width="320" height="320"></canvas>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel prediction-panel">
+        <header>
+          <div>
+            <h2>Prediction</h2>
+            <p id="trueClass">True class: -</p>
+          </div>
+          <strong id="predictedClass">-</strong>
+        </header>
+        <div id="confidenceBars" class="bars"></div>
+        <dl class="metrics">
+          <div><dt>Inference</dt><dd id="inferenceTime">- ms</dd></div>
+          <div><dt>FPS</dt><dd id="fps">-</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel training-panel">
+        <header>
+          <div>
+            <h2>Training</h2>
+            <p id="modelStatus">Model: fresh weights</p>
+          </div>
+        </header>
+        <div class="controls">
+          <button data-command="start_training">Start</button>
+          <button data-command="stop_training">Stop</button>
+          <button data-command="save_model">Save</button>
+          <button data-command="load_model">Load</button>
+        </div>
+        <dl class="metrics training">
+          <div><dt>Epoch</dt><dd id="epoch">0</dd></div>
+          <div><dt>Loss</dt><dd id="loss">-</dd></div>
+          <div><dt>Val Accuracy</dt><dd id="valAccuracy">-</dd></div>
+          <div><dt>Status</dt><dd id="trainingState">Idle</dd></div>
+        </dl>
+      </section>
+    </main>
+    <script src="/static/visualization.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
